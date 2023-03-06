@@ -156,6 +156,82 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-Fengshenbang-LM中的实体抽取样例无法运行" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2023/03/06/Fengshenbang-LM%E4%B8%AD%E7%9A%84%E5%AE%9E%E4%BD%93%E6%8A%BD%E5%8F%96%E6%A0%B7%E4%BE%8B%E6%97%A0%E6%B3%95%E8%BF%90%E8%A1%8C/">Fengshenbang-LM中的实体抽取样例无法运行</a>
+    </h1>
+  
+
+        
+        <a href="/2023/03/06/Fengshenbang-LM%E4%B8%AD%E7%9A%84%E5%AE%9E%E4%BD%93%E6%8A%BD%E5%8F%96%E6%A0%B7%E4%BE%8B%E6%97%A0%E6%B3%95%E8%BF%90%E8%A1%8C/" class="archive-article-date">
+  	<time datetime="2023-03-06T08:04:38.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-03-06</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><a target="_blank" rel="noopener" href="https://fengshenbang-doc.readthedocs.io/zh/latest/docs/%E5%9C%BA%E6%99%AF%E5%BA%94%E7%94%A8/%E5%AE%9E%E4%BD%93%E8%AF%86%E5%88%AB.html">Fengshenbang-LM实体抽取样例</a>直接运行的话会报错，并且网上相关内容较少，记录一下修改后可运行的样例。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> argparse</span><br><span class="line"><span class="keyword">from</span>  fengshen <span class="keyword">import</span> UbertPipelines<span class="comment">#需要更正拼写，它原来的拼写少了一个e，后续部分也是</span></span><br><span class="line"></span><br><span class="line">total_parser = argparse.ArgumentParser(<span class="string">&quot;TASK NAME&quot;</span>)</span><br><span class="line">total_parser = UbertPipelines.pipelines_args(total_parser)</span><br><span class="line">args = total_parser.parse_args([])<span class="comment">#这里要交一个[] 不然报错无法运行</span></span><br><span class="line"></span><br><span class="line">args.pretrained_model_path = <span class="string">&quot;IDEA-CCNL/Erlangshen-Ubert-110M-Chinese&quot;</span></span><br><span class="line">args.default_root_dir= <span class="string">&quot;/content/Fengshenbang&quot;</span><span class="comment">#需要加一个默认路径，具体路径无所谓</span></span><br><span class="line"></span><br><span class="line">test_data=[</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="string">&quot;task_type&quot;</span>: <span class="string">&quot;抽取任务&quot;</span>, </span><br><span class="line">        <span class="string">&quot;subtask_type&quot;</span>: <span class="string">&quot;实体识别&quot;</span>, </span><br><span class="line">        <span class="string">&quot;text&quot;</span>: <span class="string">&quot;这也让很多业主据此认为，雅清苑是政府公务员挤对了国家的经适房政策。&quot;</span>, </span><br><span class="line">        <span class="string">&quot;choices&quot;</span>: [ </span><br><span class="line">            &#123;<span class="string">&quot;entity_type&quot;</span>: <span class="string">&quot;小区名字&quot;</span>&#125;, </span><br><span class="line">            &#123;<span class="string">&quot;entity_type&quot;</span>: <span class="string">&quot;岗位职责&quot;</span>&#125;</span><br><span class="line">            ],</span><br><span class="line">        <span class="string">&quot;id&quot;</span>: <span class="number">0</span>&#125;</span><br><span class="line">]</span><br><span class="line"></span><br><span class="line">model = UbertPipelines(args)</span><br><span class="line">result = model.predict(test_data)</span><br><span class="line"><span class="keyword">for</span> line <span class="keyword">in</span> result:</span><br><span class="line">    <span class="built_in">print</span>(line)</span><br><span class="line"> <span class="comment">#&#123;&#x27;task_type&#x27;: &#x27;抽取任务&#x27;, &#x27;subtask_type&#x27;: &#x27;实体识别&#x27;, &#x27;text&#x27;: &#x27;这也让很多业主据此认为，雅清苑是政府公务员挤对了国家的经适房政策。&#x27;, &#x27;choices&#x27;: [&#123;&#x27;entity_type&#x27;: &#x27;小区名字&#x27;, &#x27;entity_list&#x27;: [&#123;&#x27;entity_name&#x27;: &#x27;雅清苑&#x27;, &#x27;score&#x27;: 0.9367573600102178&#125;]&#125;, &#123;&#x27;entity_type&#x27;: &#x27;岗位职责&#x27;, &#x27;entity_list&#x27;: [&#123;&#x27;entity_name&#x27;: &#x27;公务员&#x27;, &#x27;score&#x27;: 0.624367067269463&#125;]&#125;], &#x27;id&#x27;: 0&#125;</span></span><br></pre></td></tr></table></figure>
+
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">problem</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2023/03/06/Fengshenbang-LM%E4%B8%AD%E7%9A%84%E5%AE%9E%E4%BD%93%E6%8A%BD%E5%8F%96%E6%A0%B7%E4%BE%8B%E6%97%A0%E6%B3%95%E8%BF%90%E8%A1%8C/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-本周计划" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
