@@ -156,6 +156,90 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-上传图片到Blog" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2023/03/13/%E4%B8%8A%E4%BC%A0%E5%9B%BE%E7%89%87%E5%88%B0Blog/">上传图片到Blog</a>
+    </h1>
+  
+
+        
+        <a href="/2023/03/13/%E4%B8%8A%E4%BC%A0%E5%9B%BE%E7%89%87%E5%88%B0Blog/" class="archive-article-date">
+  	<time datetime="2023-03-13T02:04:51.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-03-13</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>1、cd到博客根目录下 查看_config.yml文件 查找 post_asset_folder 字段确定post_asset_folder 设置为true -&gt; post_asset_folder:true</p>
+<p>2、当您设置 post_asset_folder  参数后，在建立文件时，Hexo 会自动建立一个与文章同名的文件夹，您可以把与该文章相关的所有资源都放到此文件夹内，这样就可以更方便的使用资源。</p>
+<p>3、到博客的根目录下执行 npm install <a target="_blank" rel="noopener" href="https://link.jianshu.com/?t=https://github.com/CodeFalling/hexo-asset-image">https://github.com/CodeFalling/hexo-asset-image</a> –save 命令来进行插件的安装。这个插件会将图片进行一次封装，使得在渲染成html时，可被成功加载。</p>
+<p>4、然后创建一文章 hexo new “test” 然后查看博客的 ..&#x2F;source&#x2F;_posts 目录下的文件，会看到存在一个test 文件夹 和 test.md 文件</p>
+<p><img src="/2023/03/13/%E4%B8%8A%E4%BC%A0%E5%9B%BE%E7%89%87%E5%88%B0Blog/webp.webp" alt="img"></p>
+<p> 5、将所需要的图片资源放到test 文件夹 内 目录结构如下：</p>
+<p><img src="/2023/03/13/%E4%B8%8A%E4%BC%A0%E5%9B%BE%E7%89%87%E5%88%B0Blog/webp-16786731680633.webp" alt="img"></p>
+<p>6、书写文章使用test文件内 的图片 &#x3D;&#x3D;或者&#x3D;&#x3D;修改typora的偏好设置&#x3D;》图像&#x3D;》<a target="_blank" rel="noopener" href="https://blog.csdn.net/Qxiaofei_/article/details/124629908">复制到指定路径</a></p>
+<p><img src="/2023/03/13/%E4%B8%8A%E4%BC%A0%E5%9B%BE%E7%89%87%E5%88%B0Blog/webp-16786731751276.webp" alt="img"></p>
+<p>7.使用hexo s 命令运行本地博客如图</p>
+<p><img src="/2023/03/13/%E4%B8%8A%E4%BC%A0%E5%9B%BE%E7%89%87%E5%88%B0Blog/image-20230313101026410.png" alt="image-20230313101026410"></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Problem</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2023/03/13/%E4%B8%8A%E4%BC%A0%E5%9B%BE%E7%89%87%E5%88%B0Blog/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-W2NER训练相关" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -186,7 +270,7 @@
 <p>预测的文件为test.json，调用了在data_loader中新增了一个方法<code>load_data_bert_predict</code>。其他改动为新增tqdm进度条。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">load_data_bert_predict</span>(<span class="params">config</span>):</span><br><span class="line">    <span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">&#x27;./data/&#123;&#125;/test.json&#x27;</span>.<span class="built_in">format</span>(config.dataset), <span class="string">&#x27;r&#x27;</span>, encoding=<span class="string">&#x27;utf-8&#x27;</span>) <span class="keyword">as</span> f:</span><br><span class="line">        test_data = json.load(f)</span><br><span class="line">    tokenizer = AutoTokenizer.from_pretrained(config.bert_name, cache_dir=<span class="string">&quot;./cache/&quot;</span>)</span><br><span class="line">    vocab = Vocabulary()</span><br><span class="line">    test_ent_num = fill_vocab(vocab, test_data)</span><br><span class="line">    table = pt.PrettyTable([config.dataset, <span class="string">&#x27;sentences&#x27;</span>, <span class="string">&#x27;entities&#x27;</span>])</span><br><span class="line">    table.add_row([<span class="string">&#x27;test&#x27;</span>, <span class="built_in">len</span>(test_data), test_ent_num])</span><br><span class="line">    config.logger.info(<span class="string">&quot;\n&#123;&#125;&quot;</span>.<span class="built_in">format</span>(table))</span><br><span class="line">    <span class="comment">#尝试在label_num上补全 UD</span></span><br><span class="line">    vocab.label2id[<span class="string">&#x27;ud&#x27;</span>]=<span class="number">23</span></span><br><span class="line">    config.label_num = <span class="built_in">len</span>(vocab.label2id)<span class="comment">#预测的时候维度对不上是因为label_num不全  缺少UD标签  W2NER的label中自带的有两个 &lt;pad&gt; 和&lt;suc&gt;</span></span><br><span class="line">    config.vocab = vocab</span><br><span class="line">    test_dataset = RelationDataset(*process_bert(test_data, tokenizer, vocab))</span><br><span class="line">    <span class="keyword">return</span> (test_dataset,), (test_data,)<span class="comment">#单个元素保存元组形式，需要加一个 ,</span></span><br></pre></td></tr></table></figure>
 
-<h2 id="关于小样本量（截断100取十分之一）配置文件为example-json出现的问题"><a href="#关于小样本量（截断100取十分之一）配置文件为example-json出现的问题" class="headerlink" title="关于小样本量（截断100取十分之一）配置文件为example.json出现的问题"></a>关于小样本量（截断100取十分之一）配置文件为example.json出现的问题</h2><p>小样本量（截断100取十分之一）的test.json进行预测时<code>lable_num=23</code>,而不是train的model的24，是因为少了一个标签“UD”，没有在test.json中出现过，添加第11行的代码（<font color='red'>其实有误</font>），进行补充。</p>
+<h2 id="关于小样本量（截断100取十分之一）配置文件为example-json出现的问题"><a href="#关于小样本量（截断100取十分之一）配置文件为example-json出现的问题" class="headerlink" title="关于小样本量（截断100取十分之一）配置文件为example.json出现的问题"></a>关于小样本量（截断100取十分之一）配置文件为example.json出现的问题</h2><p>小样本量（截断100取十分之一）的test.json进行预测时<code>lable_num=23</code>,而不是train的model的24，是因为少了一个标签“UD”，没有在test.json中出现过，添加第11行的代码（<font color="red">其实有误</font>），进行补充。</p>
 <p>此外还出现过 <code>ImportError: DLL load failed:</code> 页面文件太小,无法完成操作。<a target="_blank" rel="noopener" href="https://blog.csdn.net/A_Tu_daddy/article/details/105395434">参考这个</a></p>
 <p><code>lndexError: list index out of range，</code></p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">Traceback (most recent call last):</span><br><span class="line">  File <span class="string">&quot;E:/PyProject/W2NER-main/myPredict.py&quot;</span>, line 315, <span class="keyword">in</span> &lt;module&gt;</span><br><span class="line">    trainer.predict(<span class="string">&quot;Final&quot;</span>, test_loader, ori_data[-1])</span><br><span class="line">  File <span class="string">&quot;E:/PyProject/W2NER-main/myPredict.py&quot;</span>, line 174, <span class="keyword">in</span> predict</span><br><span class="line">    instance[<span class="string">&quot;entity&quot;</span>].append(&#123;<span class="string">&quot;text&quot;</span>: [sentence[x] <span class="keyword">for</span> x <span class="keyword">in</span> ent[0]],</span><br><span class="line">  File <span class="string">&quot;E:/PyProject/W2NER-main/myPredict.py&quot;</span>, line 174, <span class="keyword">in</span> &lt;listcomp&gt;</span><br><span class="line">    instance[<span class="string">&quot;entity&quot;</span>].append(&#123;<span class="string">&quot;text&quot;</span>: [sentence[x] <span class="keyword">for</span> x <span class="keyword">in</span> ent[0]],</span><br><span class="line">IndexError: list index out of range</span><br><span class="line"></span><br><span class="line">Process finished with <span class="built_in">exit</span> code 1</span><br></pre></td></tr></table></figure>
@@ -255,17 +339,17 @@
 </tr>
 <tr>
 <td>数据量</td>
-<td><img src="/../../public/img/W2NER%E8%AE%AD%E7%BB%83%E7%9B%B8%E5%85%B3/image-20230310101933358-16786723197743.png" alt="image-20230310101933358"></td>
-<td><img src="/../../public/img/W2NER%E8%AE%AD%E7%BB%83%E7%9B%B8%E5%85%B3/image-20230310101933358-16786723197743.png" alt="image-20230310101933358"></td>
-<td><img src="/../../public/img/W2NER%E8%AE%AD%E7%BB%83%E7%9B%B8%E5%85%B3/image-20230309141600299.png" alt="image-20230309141600299"></td>
-<td><img src="/../../public/img/W2NER%E8%AE%AD%E7%BB%83%E7%9B%B8%E5%85%B3/image-20230313084933606.png" alt="image-20230313084933606"></td>
+<td><img src="/2023/03/09/W2NER%E8%AE%AD%E7%BB%83%E7%9B%B8%E5%85%B3/image-20230310101933358.png" alt="image-20230310101933358"></td>
+<td><img src="/2023/03/09/W2NER%E8%AE%AD%E7%BB%83%E7%9B%B8%E5%85%B3/image-20230310101933358.png" alt="image-20230310101933358"></td>
+<td><img src="/2023/03/09/W2NER%E8%AE%AD%E7%BB%83%E7%9B%B8%E5%85%B3/image-20230309141600299.png" alt="image-20230309141600299"></td>
+<td><img src="/2023/03/09/W2NER%E8%AE%AD%E7%BB%83%E7%9B%B8%E5%85%B3/image-20230313084933606.png" alt="image-20230313084933606"></td>
 </tr>
 <tr>
 <td>结果</td>
-<td><img src="/../../public/img/W2NER%E8%AE%AD%E7%BB%83%E7%9B%B8%E5%85%B3/image-20230309141443502.png" alt="image-20230309141443502"></td>
-<td><img src="/../../public/img/W2NER%E8%AE%AD%E7%BB%83%E7%9B%B8%E5%85%B3/image-20230310101954788.png" alt="image-20230310101954788"></td>
-<td><img src="/../../public/img/W2NER%E8%AE%AD%E7%BB%83%E7%9B%B8%E5%85%B3/image-20230309191921719.png" alt="image-20230309191921719"></td>
-<td><img src="/../../public/img/W2NER%E8%AE%AD%E7%BB%83%E7%9B%B8%E5%85%B3/image-20230313085709321.png" alt="image-20230313085709321"></td>
+<td><img src="/2023/03/09/W2NER%E8%AE%AD%E7%BB%83%E7%9B%B8%E5%85%B3/image-20230309141443502.png" alt="image-20230309141443502"></td>
+<td><img src="/2023/03/09/W2NER%E8%AE%AD%E7%BB%83%E7%9B%B8%E5%85%B3/image-20230310101954788.png" alt="image-20230310101954788"></td>
+<td><img src="/2023/03/09/W2NER%E8%AE%AD%E7%BB%83%E7%9B%B8%E5%85%B3/image-20230309191921719.png" alt="image-20230309191921719"></td>
+<td><img src="/2023/03/09/W2NER%E8%AE%AD%E7%BB%83%E7%9B%B8%E5%85%B3/image-20230313085709321.png" alt="image-20230313085709321"></td>
 </tr>
 </tbody></table>
 
@@ -776,6 +860,10 @@ MathJax.Hub.Queue(function() {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">record</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Problem</a>
               </li>
             
             <div class="clearfix"></div>
