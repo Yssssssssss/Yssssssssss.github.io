@@ -260,7 +260,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="数据预处理"><a href="#数据预处理" class="headerlink" title="数据预处理"></a>数据预处理</h1><p>需要对长文本进行截断，第一次报错，过长超过1000，截了1000；后来又报错超过512，512是<code>W2NER</code>的最长字数，截了512，用这个训练，过程中爆显存了；第三次就100了。长度越小，<code>batchsize</code>就能越大。</p>
+        <h1 id="数据预处理"><a href="#数据预处理" class="headerlink" title="数据预处理"></a>数据预处理</h1><p>需要对长文本进行截断，第一次报错，过长超过1000，截了1000；后来又报错超过512，512是<code>W2NER</code>的最长字数，截了512，用这个训练，过程中爆显存了；第三次就100了。长度越小，<code>batchsize</code>就能越大。长度越大，batchsize越小，越容易爆显存。</p>
 <h1 id="训练过程中"><a href="#训练过程中" class="headerlink" title="训练过程中"></a>训练过程中</h1><p>训练过程中会出现，开始的时候显存够用，但是训练过程中又分配不够用的情况。尝试加入了这两段代码，并不知道效果如何。但是更有用的可能是对数据进行截断，不训练过长的句子。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> torch.backends <span class="keyword">import</span> cudnn</span><br><span class="line"><span class="keyword">if</span> torch.cuda.is_available():<span class="comment">#在判断是否使用gpu的地方加上</span></span><br><span class="line">    cudnn.benchmark = <span class="literal">True</span></span><br><span class="line">    cudnn.enabled = <span class="literal">True</span></span><br></pre></td></tr></table></figure>
 
