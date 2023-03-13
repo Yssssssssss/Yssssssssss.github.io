@@ -6,15 +6,29 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://example.com">
-  <title>Archives | Ys</title>
+  <title>W2NER训练相关 | Ys</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Ys">
-<meta property="og:url" content="http://example.com/archives/index.html">
+  <meta name="description" content="数据预处理需要对长文本进行截断，第一次报错，过长超过1000，截了1000；后来又报错超过512，512是W2NER的最长字数，截了512，用这个训练，过程中爆显存了；第三次就100了。长度越小，batchsize就能越大。 训练过程中训练过程中会出现，开始的时候显存够用，但是训练过程中又分配不够用的情况。尝试加入了这两段代码，并不知道效果如何。但是更有用的可能是对数据进行截断，不训练过长的句子。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="W2NER训练相关">
+<meta property="og:url" content="http://example.com/2023/03/09/W2NER%E8%AE%AD%E7%BB%83%E7%9B%B8%E5%85%B3/index.html">
 <meta property="og:site_name" content="Ys">
+<meta property="og:description" content="数据预处理需要对长文本进行截断，第一次报错，过长超过1000，截了1000；后来又报错超过512，512是W2NER的最长字数，截了512，用这个训练，过程中爆显存了；第三次就100了。长度越小，batchsize就能越大。 训练过程中训练过程中会出现，开始的时候显存够用，但是训练过程中又分配不够用的情况。尝试加入了这两段代码，并不知道效果如何。但是更有用的可能是对数据进行截断，不训练过长的句子。">
 <meta property="og:locale">
+<meta property="og:image" content="c:\Users\Ys\AppData\Roaming\Typora\typora-user-images\image-20230310101933358.png">
+<meta property="og:image" content="c:\Users\Ys\AppData\Roaming\Typora\typora-user-images\image-20230310101933358.png">
+<meta property="og:image" content="c:\Users\Ys\AppData\Roaming\Typora\typora-user-images\image-20230309141600299.png">
+<meta property="og:image" content="c:\Users\Ys\AppData\Roaming\Typora\typora-user-images\image-20230313084933606.png">
+<meta property="og:image" content="c:\Users\Ys\AppData\Roaming\Typora\typora-user-images\image-20230309141443502.png">
+<meta property="og:image" content="c:\Users\Ys\AppData\Roaming\Typora\typora-user-images\image-20230310101954788.png">
+<meta property="og:image" content="c:\Users\Ys\AppData\Roaming\Typora\typora-user-images\image-20230309191921719.png">
+<meta property="og:image" content="c:\Users\Ys\AppData\Roaming\Typora\typora-user-images\image-20230313085709321.png">
+<meta property="article:published_time" content="2023-03-09T04:46:00.000Z">
+<meta property="article:modified_time" content="2023-03-13T01:30:12.279Z">
 <meta property="article:author" content="Ys">
+<meta property="article:tag" content="problem">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="c:\Users\Ys\AppData\Roaming\Typora\typora-user-images\image-20230310101933358.png">
   
     <link rel="alternative" href="/atom.xml" title="Ys" type="application/atom+xml">
   
@@ -154,36 +168,126 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
+            <article id="post-W2NER训练相关" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
   
+    <h1 class="article-title" itemprop="name">
+      W2NER训练相关
+    </h1>
   
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2023" class="archive-year">2023</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2023/03/09/W2NER%E8%AE%AD%E7%BB%83%E7%9B%B8%E5%85%B3/" class="archive-article-date">
+
+        
+        <a href="/2023/03/09/W2NER%E8%AE%AD%E7%BB%83%E7%9B%B8%E5%85%B3/" class="archive-article-date">
   	<time datetime="2023-03-09T04:46:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-03-09</time>
 </a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2023/03/09/W2NER%E8%AE%AD%E7%BB%83%E7%9B%B8%E5%85%B3/">W2NER训练相关</a>
-    </h1>
-  
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="数据预处理"><a href="#数据预处理" class="headerlink" title="数据预处理"></a>数据预处理</h1><p>需要对长文本进行截断，第一次报错，过长超过1000，截了1000；后来又报错超过512，512是<code>W2NER</code>的最长字数，截了512，用这个训练，过程中爆显存了；第三次就100了。长度越小，<code>batchsize</code>就能越大。</p>
+<h1 id="训练过程中"><a href="#训练过程中" class="headerlink" title="训练过程中"></a>训练过程中</h1><p>训练过程中会出现，开始的时候显存够用，但是训练过程中又分配不够用的情况。尝试加入了这两段代码，并不知道效果如何。但是更有用的可能是对数据进行截断，不训练过长的句子。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> torch.backends <span class="keyword">import</span> cudnn</span><br><span class="line"><span class="keyword">if</span> torch.cuda.is_available():<span class="comment">#在判断是否使用gpu的地方加上</span></span><br><span class="line">    cudnn.benchmark = <span class="literal">True</span></span><br><span class="line">    cudnn.enabled = <span class="literal">True</span></span><br></pre></td></tr></table></figure>
 
-        <div class="article-info info-on-right">
-          
+<h1 id="预测"><a href="#预测" class="headerlink" title="预测"></a>预测</h1><p>基于main.py自定义了myPredict.py实现预测功能，主要改动如下。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">datasets, ori_data = data_loader.load_data_bert_predict(config)</span><br><span class="line">test_loader=<span class="literal">None</span></span><br><span class="line"><span class="keyword">for</span> i, dataset <span class="keyword">in</span> <span class="built_in">enumerate</span>(datasets):</span><br><span class="line">        test_loader = (DataLoader(dataset=dataset,</span><br><span class="line">                                  batch_size=config.batch_size,</span><br><span class="line">                                  collate_fn=data_loader.collate_fn,</span><br><span class="line">                                  shuffle=i == <span class="number">0</span>,</span><br><span class="line">                                  num_workers=<span class="number">4</span>,</span><br><span class="line">                                  drop_last=i == <span class="number">0</span>))</span><br></pre></td></tr></table></figure>
+
+<p>预测的文件为test.json，调用了在data_loader中新增了一个方法<code>load_data_bert_predict</code>。其他改动为新增tqdm进度条。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">load_data_bert_predict</span>(<span class="params">config</span>):</span><br><span class="line">    <span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">&#x27;./data/&#123;&#125;/test.json&#x27;</span>.<span class="built_in">format</span>(config.dataset), <span class="string">&#x27;r&#x27;</span>, encoding=<span class="string">&#x27;utf-8&#x27;</span>) <span class="keyword">as</span> f:</span><br><span class="line">        test_data = json.load(f)</span><br><span class="line">    tokenizer = AutoTokenizer.from_pretrained(config.bert_name, cache_dir=<span class="string">&quot;./cache/&quot;</span>)</span><br><span class="line">    vocab = Vocabulary()</span><br><span class="line">    test_ent_num = fill_vocab(vocab, test_data)</span><br><span class="line">    table = pt.PrettyTable([config.dataset, <span class="string">&#x27;sentences&#x27;</span>, <span class="string">&#x27;entities&#x27;</span>])</span><br><span class="line">    table.add_row([<span class="string">&#x27;test&#x27;</span>, <span class="built_in">len</span>(test_data), test_ent_num])</span><br><span class="line">    config.logger.info(<span class="string">&quot;\n&#123;&#125;&quot;</span>.<span class="built_in">format</span>(table))</span><br><span class="line">    <span class="comment">#尝试在label_num上补全 UD</span></span><br><span class="line">    vocab.label2id[<span class="string">&#x27;ud&#x27;</span>]=<span class="number">23</span></span><br><span class="line">    config.label_num = <span class="built_in">len</span>(vocab.label2id)<span class="comment">#预测的时候维度对不上是因为label_num不全  缺少UD标签  W2NER的label中自带的有两个 &lt;pad&gt; 和&lt;suc&gt;</span></span><br><span class="line">    config.vocab = vocab</span><br><span class="line">    test_dataset = RelationDataset(*process_bert(test_data, tokenizer, vocab))</span><br><span class="line">    <span class="keyword">return</span> (test_dataset,), (test_data,)<span class="comment">#单个元素保存元组形式，需要加一个 ,</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="关于小样本量（截断100取十分之一）配置文件为example-json出现的问题"><a href="#关于小样本量（截断100取十分之一）配置文件为example-json出现的问题" class="headerlink" title="关于小样本量（截断100取十分之一）配置文件为example.json出现的问题"></a>关于小样本量（截断100取十分之一）配置文件为example.json出现的问题</h2><p>小样本量（截断100取十分之一）的test.json进行预测时<code>lable_num=23</code>,而不是train的model的24，是因为少了一个标签“UD”，没有在test.json中出现过，添加第11行的代码（<font color='red'>其实有误</font>），进行补充。</p>
+<p>此外还出现过 <code>ImportError: DLL load failed:</code> 页面文件太小,无法完成操作。<a target="_blank" rel="noopener" href="https://blog.csdn.net/A_Tu_daddy/article/details/105395434">参考这个</a></p>
+<p><code>lndexError: list index out of range，</code></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">Traceback (most recent call last):</span><br><span class="line">  File <span class="string">&quot;E:/PyProject/W2NER-main/myPredict.py&quot;</span>, line 315, <span class="keyword">in</span> &lt;module&gt;</span><br><span class="line">    trainer.predict(<span class="string">&quot;Final&quot;</span>, test_loader, ori_data[-1])</span><br><span class="line">  File <span class="string">&quot;E:/PyProject/W2NER-main/myPredict.py&quot;</span>, line 174, <span class="keyword">in</span> predict</span><br><span class="line">    instance[<span class="string">&quot;entity&quot;</span>].append(&#123;<span class="string">&quot;text&quot;</span>: [sentence[x] <span class="keyword">for</span> x <span class="keyword">in</span> ent[0]],</span><br><span class="line">  File <span class="string">&quot;E:/PyProject/W2NER-main/myPredict.py&quot;</span>, line 174, <span class="keyword">in</span> &lt;listcomp&gt;</span><br><span class="line">    instance[<span class="string">&quot;entity&quot;</span>].append(&#123;<span class="string">&quot;text&quot;</span>: [sentence[x] <span class="keyword">for</span> x <span class="keyword">in</span> ent[0]],</span><br><span class="line">IndexError: list index out of range</span><br><span class="line"></span><br><span class="line">Process finished with <span class="built_in">exit</span> code 1</span><br></pre></td></tr></table></figure>
+
+<p>直接原因是因为myPredict中174行，数组越界，后来发现是句子长度和实体位置不对应，越界了。还存在潜在的错误，是因为<code>config.vocab.id2label</code>和其中的<code>config.vocab.label2id</code>名称不一致（但为什么main函数predict的时候没出错？）。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">config.vocab.id_to_label(ent[<span class="number">1</span>]) <span class="comment">#不存在id_to_label其实是id2label</span></span><br><span class="line">config.vocab.id2label[ent[<span class="number">1</span>]]<span class="comment">#修改为这个</span></span><br></pre></td></tr></table></figure>
+
+<p>还有ud只在<code>label2id</code>中添加，没有在<code>id2label</code>中添加，直接在<code>load_data_bert_predict</code>添加的方法不行，需要在<code>fill_vocab</code>借用<code>vocab.add_label</code>添加。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">fill_vocab</span>(<span class="params">vocab, dataset</span>):</span><br><span class="line">    entity_num = <span class="number">0</span></span><br><span class="line">    <span class="keyword">for</span> instance <span class="keyword">in</span> dataset:</span><br><span class="line">        <span class="keyword">for</span> entity <span class="keyword">in</span> instance[<span class="string">&quot;ner&quot;</span>]:</span><br><span class="line">            vocab.add_label(entity[<span class="string">&quot;type&quot;</span>])</span><br><span class="line">        entity_num += <span class="built_in">len</span>(instance[<span class="string">&quot;ner&quot;</span>])</span><br><span class="line">    vocab.add_label(<span class="string">&#x27;ud&#x27;</span>)<span class="comment">#必须补在fill_vocab之中，因为add_label会生成id2label和label2id</span></span><br><span class="line">    <span class="keyword">return</span> entity_num</span><br></pre></td></tr></table></figure>
+
+<p>还是报错，<code>lndexError: list index out of range，</code>。</p>
+<p>将myPredcit.py中的<code>shuffle</code>改为<code>False</code>就没问题了。这是因为测试dev.josn和test.josn的时候，不能<code>shuffle</code>不然sentences和处理好的data_loader数据就不能一一对应了。原文是用了shuffle&#x3D; i&#x3D;&#x3D;0，来做了这一步，i&#x3D;0的时候加载的train.json。我改为myPredcit的时候，只加载了test.json，i为0对应是test.json，按理说不因该<code>shuffle</code>，但是还是打乱了。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> i, dataset <span class="keyword">in</span> <span class="built_in">enumerate</span>(datasets):</span><br><span class="line">      test_loader = (DataLoader(dataset=dataset,</span><br><span class="line">                                batch_size=config.batch_size,</span><br><span class="line">                                collate_fn=data_loader.collate_fn,</span><br><span class="line">                                shuffle=<span class="literal">False</span>,</span><br><span class="line">                                num_workers=<span class="number">0</span>,</span><br><span class="line">                                drop_last=i == <span class="number">0</span>))</span><br></pre></td></tr></table></figure>
+
+<p>但是结果跟训练的预测结果相差挺大的</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">+------------+--------+-----------+--------+</span><br><span class="line">| TEST Final |   F1   | Precision | Recall |</span><br><span class="line">+------------+--------+-----------+--------+</span><br><span class="line">|   Label    | 0.1482 |   0.1442  | 0.1554 |</span><br><span class="line">|   Entity   | 0.4262 |   0.4297  | 0.4228 |</span><br><span class="line">+------------+--------+-----------+--------+</span><br></pre></td></tr></table></figure>
+
+<p>是因为从test.json读取，生成的<code>label2id</code>与从train.json生成的<code>label2id</code>不一致。把<code>label2id</code>和<code>id2label</code>写死为train.json生成的。上文<code>fill_vocab</code>中的<code>vocab.add_label(&#39;ud&#39;)</code>可以不要了。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">load_data_bert_predict</span>(<span class="params">config</span>):</span><br><span class="line">    <span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">&#x27;./data/&#123;&#125;/test.json&#x27;</span>.<span class="built_in">format</span>(config.dataset), <span class="string">&#x27;r&#x27;</span>, encoding=<span class="string">&#x27;utf-8&#x27;</span>) <span class="keyword">as</span> f:</span><br><span class="line">        test_data = json.load(f)</span><br><span class="line">    tokenizer = AutoTokenizer.from_pretrained(config.bert_name, cache_dir=<span class="string">&quot;./cache/&quot;</span>)</span><br><span class="line">    vocab = Vocabulary()</span><br><span class="line">    test_ent_num = fill_vocab(vocab, test_data)</span><br><span class="line">    <span class="comment">#修改生成的vocab中的id2label,label2id</span></span><br><span class="line">    vocab.id2label=&#123;<span class="number">0</span>: <span class="string">&#x27;&lt;pad&gt;&#x27;</span>, <span class="number">1</span>: <span class="string">&#x27;&lt;suc&gt;&#x27;</span>, <span class="number">2</span>: <span class="string">&#x27;cn&#x27;</span>, <span class="number">3</span>: <span class="string">&#x27;sd&#x27;</span>, <span class="number">4</span>: <span class="string">&#x27;ts&#x27;</span>, <span class="number">5</span>: <span class="string">&#x27;eh&#x27;</span>, <span class="number">6</span>: <span class="string">&#x27;lhs&#x27;</span>, <span class="number">7</span>: <span class="string">&#x27;ed&#x27;</span>, <span class="number">8</span>: <span class="string">&#x27;ap&#x27;</span>, <span class="number">9</span>: <span class="string">&#x27;ps&#x27;</span>, <span class="number">10</span>: <span class="string">&#x27;pr&#x27;</span>, <span class="number">11</span>: <span class="string">&#x27;ths&#x27;</span>, <span class="number">12</span>: <span class="string">&#x27;thr&#x27;</span>, <span class="number">13</span>: <span class="string">&#x27;pe&#x27;</span>, <span class="number">14</span>: <span class="string">&#x27;htp&#x27;</span>, <span class="number">15</span>: <span class="string">&#x27;ra&#x27;</span>, <span class="number">16</span>: <span class="string">&#x27;cd&#x27;</span>, <span class="number">17</span>: <span class="string">&#x27;rs&#x27;</span>, <span class="number">18</span>: <span class="string">&#x27;ltp&#x27;</span>, <span class="number">19</span>: <span class="string">&#x27;rd&#x27;</span>, <span class="number">20</span>: <span class="string">&#x27;tps&#x27;</span>, <span class="number">21</span>: <span class="string">&#x27;li&#x27;</span>, <span class="number">22</span>: <span class="string">&#x27;fs&#x27;</span>, <span class="number">23</span>: <span class="string">&#x27;ud&#x27;</span>&#125;</span><br><span class="line">    vocab.label2id=&#123;<span class="string">&#x27;&lt;pad&gt;&#x27;</span>: <span class="number">0</span>, <span class="string">&#x27;&lt;suc&gt;&#x27;</span>: <span class="number">1</span>, <span class="string">&#x27;cn&#x27;</span>: <span class="number">2</span>, <span class="string">&#x27;sd&#x27;</span>: <span class="number">3</span>, <span class="string">&#x27;ts&#x27;</span>: <span class="number">4</span>, <span class="string">&#x27;eh&#x27;</span>: <span class="number">5</span>, <span class="string">&#x27;lhs&#x27;</span>: <span class="number">6</span>, <span class="string">&#x27;ed&#x27;</span>: <span class="number">7</span>, <span class="string">&#x27;ap&#x27;</span>: <span class="number">8</span>, <span class="string">&#x27;ps&#x27;</span>: <span class="number">9</span>, <span class="string">&#x27;pr&#x27;</span>: <span class="number">10</span>, <span class="string">&#x27;ths&#x27;</span>: <span class="number">11</span>, <span class="string">&#x27;thr&#x27;</span>: <span class="number">12</span>, <span class="string">&#x27;pe&#x27;</span>: <span class="number">13</span>, <span class="string">&#x27;htp&#x27;</span>: <span class="number">14</span>, <span class="string">&#x27;ra&#x27;</span>: <span class="number">15</span>, <span class="string">&#x27;cd&#x27;</span>: <span class="number">16</span>, <span class="string">&#x27;rs&#x27;</span>: <span class="number">17</span>, <span class="string">&#x27;ltp&#x27;</span>: <span class="number">18</span>, <span class="string">&#x27;rd&#x27;</span>: <span class="number">19</span>, <span class="string">&#x27;tps&#x27;</span>: <span class="number">20</span>, <span class="string">&#x27;li&#x27;</span>: <span class="number">21</span>, <span class="string">&#x27;fs&#x27;</span>: <span class="number">22</span>, <span class="string">&#x27;ud&#x27;</span>: <span class="number">23</span>&#125;</span><br><span class="line">    table = pt.PrettyTable([config.dataset, <span class="string">&#x27;sentences&#x27;</span>, <span class="string">&#x27;entities&#x27;</span>])</span><br><span class="line">    table.add_row([<span class="string">&#x27;test&#x27;</span>, <span class="built_in">len</span>(test_data), test_ent_num])</span><br><span class="line">    config.logger.info(<span class="string">&quot;\n&#123;&#125;&quot;</span>.<span class="built_in">format</span>(table))</span><br><span class="line">    config.label_num = <span class="built_in">len</span>(vocab.label2id)</span><br><span class="line">    config.vocab = vocab</span><br><span class="line">    test_dataset = RelationDataset(*process_bert(test_data, tokenizer, vocab))</span><br><span class="line">    <span class="keyword">return</span> (test_dataset,), (test_data,)</span><br></pre></td></tr></table></figure>
+
+<p> 改造完成后，能够正常输出了。输出的Lable的F1列表长度为23，不包含UD。label指论文Section 2中所描述的word与word间的关系，在得到这些label后，需要根据Section 3 Decoding中的方式解码得到最终的entity。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">2023-03-09 21:22:13 - INFO: TEST Label F1 [0.99975171 0.91609462 0.98654709 0.66375546 0.66666667 0.46666667 0.         0.66666667 0.15384615 0.74647887 0.71257485 0.57692308 0.69565217 0.74796748 0.52631579 0.         0.63636364 0.75675676 0.         0.23809524 0.63414634 0.54545455 0.        ]<span class="comment">#均值为下表Label的F1 0.5364</span></span><br><span class="line">2023-03-09 21:22:13 - INFO: </span><br><span class="line">+------------+--------+-----------+--------+</span><br><span class="line">| TEST Final |   F1   | Precision | Recall |</span><br><span class="line">+------------+--------+-----------+--------+</span><br><span class="line">|   Label    | 0.5364 |   0.5348  | 0.5539 |</span><br><span class="line">|   Entity   | 0.7692 |   0.7755  | 0.7630 |</span><br><span class="line">+------------+--------+-----------+--------+</span><br></pre></td></tr></table></figure>
+
+<p>Lable的F1转化为list</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">&lt;PAD&gt; = <span class="number">0.99975171</span></span><br><span class="line">&lt;SUC&gt; = <span class="number">0.91609462</span></span><br><span class="line">CN = <span class="number">0.98654709</span></span><br><span class="line">SD = <span class="number">0.66375546</span></span><br><span class="line">TS = <span class="number">0.66666667</span></span><br><span class="line">EH = <span class="number">0.46666667</span></span><br><span class="line">LHS = <span class="number">0</span></span><br><span class="line">ED = <span class="number">0.66666667</span></span><br><span class="line">AP = <span class="number">0.15384615</span></span><br><span class="line">PS = <span class="number">0.74647887</span></span><br><span class="line">PR = <span class="number">0.71257485</span></span><br><span class="line">THS = <span class="number">0.57692308</span></span><br><span class="line">THR = <span class="number">0.69565217</span></span><br><span class="line">PE = <span class="number">0.74796748</span></span><br><span class="line">HTP = <span class="number">0.52631579</span></span><br><span class="line">RA = <span class="number">0</span></span><br><span class="line">CD = <span class="number">0.63636364</span></span><br><span class="line">RS = <span class="number">0.75675676</span></span><br><span class="line">LTP = <span class="number">0</span></span><br><span class="line">RD = <span class="number">0.23809524</span></span><br><span class="line">TPS = <span class="number">0.63414634</span></span><br><span class="line">LI = <span class="number">0.54545455</span></span><br><span class="line">FS = <span class="number">0</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h1 id="训练结果小计"><a href="#训练结果小计" class="headerlink" title="训练结果小计"></a>训练结果小计</h1><table>
+<thead>
+<tr>
+<th>数据集</th>
+<th>截断100，取十分之一(舍弃长句)</th>
+<th>截断100，取十分之一(舍弃长句)</th>
+<th>截断100(舍弃长句)</th>
+<th>截断100（句子切分）保留五分之一全O标签</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>config</td>
+<td>example.json</td>
+<td>resume-zh.json</td>
+<td>example.json</td>
+<td>resume-zh.json</td>
+</tr>
+<tr>
+<td>开始时间</td>
+<td>11.27</td>
+<td>9.52</td>
+<td>12.10</td>
+<td>18.44</td>
+</tr>
+<tr>
+<td>结束时间</td>
+<td>12.08</td>
+<td>10.16</td>
+<td>19.10</td>
+<td>05.51</td>
+</tr>
+<tr>
+<td>预测事件&#x2F;实际用时</td>
+<td>38分钟 &#x2F;40分钟</td>
+<td>25分钟&#x2F;24分钟</td>
+<td>6:18&#x2F;7:00</td>
+<td>10:5&#x2F;11.07</td>
+</tr>
+<tr>
+<td>数据量</td>
+<td><img src="C:\Users\Ys\AppData\Roaming\Typora\typora-user-images\image-20230310101933358.png" alt="image-20230310101933358"></td>
+<td><img src="C:\Users\Ys\AppData\Roaming\Typora\typora-user-images\image-20230310101933358.png" alt="image-20230310101933358"></td>
+<td><img src="C:\Users\Ys\AppData\Roaming\Typora\typora-user-images\image-20230309141600299.png" alt="image-20230309141600299"></td>
+<td><img src="C:\Users\Ys\AppData\Roaming\Typora\typora-user-images\image-20230313084933606.png" alt="image-20230313084933606"></td>
+</tr>
+<tr>
+<td>结果</td>
+<td><img src="C:\Users\Ys\AppData\Roaming\Typora\typora-user-images\image-20230309141443502.png" alt="image-20230309141443502"></td>
+<td><img src="C:\Users\Ys\AppData\Roaming\Typora\typora-user-images\image-20230310101954788.png" alt="image-20230310101954788"></td>
+<td><img src="C:\Users\Ys\AppData\Roaming\Typora\typora-user-images\image-20230309191921719.png" alt="image-20230309191921719"></td>
+<td><img src="C:\Users\Ys\AppData\Roaming\Typora\typora-user-images\image-20230313085709321.png" alt="image-20230313085709321"></td>
+</tr>
+</tbody></table>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -195,171 +299,106 @@
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://example.com/2023/03/09/W2NER%E8%AE%AD%E7%BB%83%E7%9B%B8%E5%85%B3/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2023/03/06/Fengshenbang-LM%E4%B8%AD%E7%9A%84%E5%AE%9E%E4%BD%93%E6%8A%BD%E5%8F%96%E6%A0%B7%E4%BE%8B%E6%97%A0%E6%B3%95%E8%BF%90%E8%A1%8C/" class="archive-article-date">
-  	<time datetime="2023-03-06T08:04:38.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-03-06</time>
-</a>
+<nav id="article-nav">
+  
+  
+    <a href="/2023/03/06/Fengshenbang-LM%E4%B8%AD%E7%9A%84%E5%AE%9E%E4%BD%93%E6%8A%BD%E5%8F%96%E6%A0%B7%E4%BE%8B%E6%97%A0%E6%B3%95%E8%BF%90%E8%A1%8C/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Fengshenbang-LM中的实体抽取样例无法运行</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
+        
+        
+    </div>
+</aside>
+
+
+
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2023/03/06/Fengshenbang-LM%E4%B8%AD%E7%9A%84%E5%AE%9E%E4%BD%93%E6%8A%BD%E5%8F%96%E6%A0%B7%E4%BE%8B%E6%97%A0%E6%B3%95%E8%BF%90%E8%A1%8C/">Fengshenbang-LM中的实体抽取样例无法运行</a>
-    </h1>
+  
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">problem</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2023/03/06/%E6%9C%AC%E5%91%A8%E8%AE%A1%E5%88%92/" class="archive-article-date">
-  	<time datetime="2023-03-06T02:02:12.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-03-06</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2023/03/06/%E6%9C%AC%E5%91%A8%E8%AE%A1%E5%88%92/">本周计划(3.06-3.12)</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">record</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2023/03/05/hexo-readme/" class="archive-article-date">
-  	<time datetime="2023-03-05T05:56:15.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-03-05</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2023/03/05/hexo-readme/">hexo_readme</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">problem</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2023/03/05/hello-world/" class="archive-article-date">
-  	<time datetime="2023-03-05T05:53:52.277Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-03-05</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2023/03/05/hello-world/">Hello World</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">thinks</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
-    
 
 
           </div>
@@ -382,8 +421,8 @@
 	var yiliaConfig = {
 		mathjax: true,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: true,
