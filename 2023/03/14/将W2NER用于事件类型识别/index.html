@@ -6,19 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://example.com">
-  <title>本周计划(3.06-3.12) | Ys</title>
+  <title>将W2NER用于事件类型识别 | Ys</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Works:  周中开组会，主要内容：（1）前期工作汇总；（2）本学期研究计划。每人根据自己的实际情况准备。 开启Java复习  Now:  EEFRRD采用BERT-BiLSMT-CRF进行论元识别，使用RRS&#x2F;RRPS&#x2F;RRPS_22等进行事件识别，完成单事件抽取的实验  Next:  论元识别部分采取Longformer&#x2F;W2NER等来提升效果 RRPS想办法提">
+  <meta name="description" content="W2NER可以对扁平实体&#x2F;非连续实体&#x2F;重叠实体&#x2F;进行实体识别。因此考虑将事件论元的索引序列作为输入sentence，论元位置作为实体位置信息index，事件类型作为type。 设想了两种构造方式。 1234# 类型一，每种论元只保存第一次出现的位置，最多22种论元的相对位置，但是不能体现多事件的情况&amp;#123;&quot;sentence&quot;: [&quot;">
 <meta property="og:type" content="article">
-<meta property="og:title" content="本周计划(3.06-3.12)">
-<meta property="og:url" content="http://example.com/2023/03/06/%E6%9C%AC%E5%91%A8%E8%AE%A1%E5%88%92/index.html">
+<meta property="og:title" content="将W2NER用于事件类型识别">
+<meta property="og:url" content="http://example.com/2023/03/14/%E5%B0%86W2NER%E7%94%A8%E4%BA%8E%E4%BA%8B%E4%BB%B6%E7%B1%BB%E5%9E%8B%E8%AF%86%E5%88%AB/index.html">
 <meta property="og:site_name" content="Ys">
-<meta property="og:description" content="Works:  周中开组会，主要内容：（1）前期工作汇总；（2）本学期研究计划。每人根据自己的实际情况准备。 开启Java复习  Now:  EEFRRD采用BERT-BiLSMT-CRF进行论元识别，使用RRS&#x2F;RRPS&#x2F;RRPS_22等进行事件识别，完成单事件抽取的实验  Next:  论元识别部分采取Longformer&#x2F;W2NER等来提升效果 RRPS想办法提">
+<meta property="og:description" content="W2NER可以对扁平实体&#x2F;非连续实体&#x2F;重叠实体&#x2F;进行实体识别。因此考虑将事件论元的索引序列作为输入sentence，论元位置作为实体位置信息index，事件类型作为type。 设想了两种构造方式。 1234# 类型一，每种论元只保存第一次出现的位置，最多22种论元的相对位置，但是不能体现多事件的情况&amp;#123;&quot;sentence&quot;: [&quot;">
 <meta property="og:locale">
-<meta property="article:published_time" content="2023-03-06T02:02:12.000Z">
-<meta property="article:modified_time" content="2023-03-06T02:19:01.129Z">
+<meta property="article:published_time" content="2023-03-14T03:11:39.000Z">
+<meta property="article:modified_time" content="2023-03-14T03:14:27.219Z">
 <meta property="article:author" content="Ys">
-<meta property="article:tag" content="record">
+<meta property="article:tag" content="problem">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/atom.xml" title="Ys" type="application/atom+xml">
@@ -159,41 +159,49 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-本周计划" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-将W2NER用于事件类型识别" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      本周计划(3.06-3.12)
+      将W2NER用于事件类型识别
     </h1>
   
 
         
-        <a href="/2023/03/06/%E6%9C%AC%E5%91%A8%E8%AE%A1%E5%88%92/" class="archive-article-date">
-  	<time datetime="2023-03-06T02:02:12.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-03-06</time>
+        <a href="/2023/03/14/%E5%B0%86W2NER%E7%94%A8%E4%BA%8E%E4%BA%8B%E4%BB%B6%E7%B1%BB%E5%9E%8B%E8%AF%86%E5%88%AB/" class="archive-article-date">
+  	<time datetime="2023-03-14T03:11:39.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-03-14</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>Works:</p>
-<ul>
-<li>周中开组会，主要内容：（1）前期工作汇总；（2）本学期研究计划。每人根据自己的实际情况准备。</li>
-<li>开启Java复习</li>
-</ul>
-<p>Now:</p>
-<ul>
-<li>EEFRRD采用BERT-BiLSMT-CRF进行论元识别，使用RRS&#x2F;RRPS&#x2F;RRPS_22等进行事件识别，完成单事件抽取的实验</li>
-</ul>
-<p>Next:</p>
-<ul>
-<li>论元识别部分采取Longformer&#x2F;W2NER等来提升效果</li>
-<li>RRPS想办法提升效果</li>
-<li>加上注意力部分（添加位置编码信息等）测试效果，并尝试提升</li>
-</ul>
+        <p>W2NER可以对扁平实体&#x2F;非连续实体&#x2F;重叠实体&#x2F;进行实体识别。因此考虑将事件论元的索引序列作为输入sentence，论元位置作为实体位置信息index，事件类型作为type。</p>
+<p><strong>设想了两种构造方式。</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 类型一，每种论元只保存第一次出现的位置，最多22种论元的相对位置，但是不能体现多事件的情况</span></span><br><span class="line">&#123;<span class="string">&quot;sentence&quot;</span>: [<span class="string">&quot;6&quot;</span>, <span class="string">&quot;15&quot;</span>, <span class="string">&quot;3&quot;</span>, <span class="string">&quot;17&quot;</span>, <span class="string">&quot;18&quot;</span>, <span class="string">&quot;16&quot;</span>, <span class="string">&quot;4&quot;</span>, <span class="string">&quot;20&quot;</span>, <span class="string">&quot;21&quot;</span>, <span class="string">&quot;19&quot;</span>], <span class="string">&quot;ner&quot;</span>: [&#123;<span class="string">&quot;index&quot;</span>: [<span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>, <span class="number">8</span>, <span class="number">9</span>], <span class="string">&quot;type&quot;</span>: <span class="string">&quot;EquityPledge&quot;</span>&#125;]&#125;</span><br><span class="line"><span class="comment"># 类型二，保留每个论元的第一次出现位置，最多72个论元，可以体现多事件的情况</span></span><br><span class="line">&#123;<span class="string">&quot;sentence&quot;</span>: [<span class="string">&quot;6&quot;</span>, <span class="string">&quot;0&quot;</span>, <span class="string">&quot;20&quot;</span>, <span class="string">&quot;21&quot;</span>, <span class="string">&quot;17&quot;</span>, <span class="string">&quot;17&quot;</span>, <span class="string">&quot;17&quot;</span>, <span class="string">&quot;17&quot;</span>, <span class="string">&quot;2&quot;</span>, <span class="string">&quot;1&quot;</span>], <span class="string">&quot;ner&quot;</span>: [&#123;<span class="string">&quot;index&quot;</span>: [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">8</span>, <span class="number">9</span>], <span class="string">&quot;type&quot;</span>: <span class="string">&quot;EquityFreeze&quot;</span>&#125;]&#125;</span><br></pre></td></tr></table></figure>
+
+<p>上文sentence中保留的是标签tag的索引。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tag=[<span class="string">&#x27;EH&#x27;</span>, <span class="string">&#x27;FS&#x27;</span>, <span class="string">&#x27;LI&#x27;</span>, <span class="string">&#x27;SD&#x27;</span>, <span class="string">&#x27;ED&#x27;</span>, <span class="string">&#x27;UD&#x27;</span>, <span class="string">&#x27;CN&#x27;</span>, <span class="string">&#x27;HTP&#x27;</span>, <span class="string">&#x27;LTP&#x27;</span>, <span class="string">&#x27;CD&#x27;</span>, <span class="string">&#x27;RS&#x27;</span>, <span class="string">&#x27;RA&#x27;</span>, <span class="string">&#x27;TS&#x27;</span>, <span class="string">&#x27;AP&#x27;</span>,<span class="string">&#x27;LHS&#x27;</span>, <span class="string">&#x27;PR&#x27;</span>,<span class="string">&#x27;PS&#x27;</span>, <span class="string">&#x27;PE&#x27;</span>, <span class="string">&#x27;RD&#x27;</span>, <span class="string">&#x27;TPS&#x27;</span>, <span class="string">&#x27;THS&#x27;</span>, <span class="string">&#x27;THR&#x27;</span>]</span><br></pre></td></tr></table></figure>
+
+<p><strong>类型一、每种论元只保存第一次出现的位置，最多22种论元的相对位置，但是不能体现多事件的情况。</strong></p>
+<p>数据量</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">+------------------+-----------+----------+</span><br><span class="line">| event_Argument22 | sentences | entities |</span><br><span class="line">+------------------+-----------+----------+</span><br><span class="line">|      train       |   25632   |  38088   |</span><br><span class="line">|       dev        |    3204   |   4987   |</span><br><span class="line">|       <span class="built_in">test</span>       |    3204   |   4749   |</span><br><span class="line">+------------------+-----------+----------+</span><br></pre></td></tr></table></figure>
+
+<p>W2NER训练结果（resume-zh.json，batchsize&#x3D;32）</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">vocab.label2id=&#123;0: <span class="string">&#x27;&lt;pad&gt;&#x27;</span>, 1: <span class="string">&#x27;&lt;suc&gt;&#x27;</span>, 2: <span class="string">&#x27;equityoverweight&#x27;</span>, 3: <span class="string">&#x27;equityunderweight&#x27;</span>, 4: <span class="string">&#x27;equityfreeze&#x27;</span>, 5: <span class="string">&#x27;equitypledge&#x27;</span>, 6: <span class="string">&#x27;equityrepurchase&#x27;</span>&#125;</span><br><span class="line"></span><br><span class="line">2023-03-14 10:45:44 - INFO: TEST Label F1 [0.99985811 0.99885158 0.65217391 0.66878981 1.         0.99800876</span><br><span class="line"> 1.        ]</span><br><span class="line">2023-03-14 10:45:44 - INFO: </span><br><span class="line">+------------+--------+-----------+--------+</span><br><span class="line">| TEST Final |   F1   | Precision | Recall |</span><br><span class="line">+------------+--------+-----------+--------+</span><br><span class="line">|   Label    | 0.9025 |   0.9057  | 0.9056 |</span><br><span class="line">|   Entity   | 0.9333 |   0.9355  | 0.9311 |</span><br><span class="line">+------------+--------+-----------+--------+</span><br></pre></td></tr></table></figure>
+
+<p>去处<pad>和<suc>标签，Label F1 为0.867</suc></pad></p>
+<p> <strong>类型二、保留每个论元的第一次出现位置，最多72个论元</strong></p>
+<p>数据量</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">+-----------+-----------+----------+</span><br><span class="line">| resume-zh | sentences | entities |</span><br><span class="line">+-----------+-----------+----------+</span><br><span class="line">|   train   |   25632   |  38088   |</span><br><span class="line">|    dev    |    3204   |   4987   |</span><br><span class="line">|    <span class="built_in">test</span>   |    3204   |   4749   |</span><br><span class="line">+-----------+-----------+----------+</span><br></pre></td></tr></table></figure>
+
+<p>W2NER训练结果（resume-zh.json，batchsize&#x3D;32）</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">vocab.label2id=&#123;0: <span class="string">&#x27;&lt;pad&gt;&#x27;</span>, 1: <span class="string">&#x27;&lt;suc&gt;&#x27;</span>, 2: <span class="string">&#x27;equityoverweight&#x27;</span>, 3: <span class="string">&#x27;equityunderweight&#x27;</span>, 4: <span class="string">&#x27;equityfreeze&#x27;</span>, 5: <span class="string">&#x27;equitypledge&#x27;</span>, 6: <span class="string">&#x27;equityrepurchase&#x27;</span>&#125;</span><br><span class="line"></span><br><span class="line">2023-03-14 10:44:13 - INFO: TEST Label F1 [0.98795635 0.87736173 0.54684096 0.55455712 0.7839196  0.81204013</span><br><span class="line"> 0.96526656]</span><br><span class="line">2023-03-14 10:44:13 - INFO: </span><br><span class="line">+------------+--------+-----------+--------+</span><br><span class="line">| TEST Final |   F1   | Precision | Recall |</span><br><span class="line">+------------+--------+-----------+--------+</span><br><span class="line">|   Label    | 0.7897 |   0.7993  | 0.7828 |</span><br><span class="line">|   Entity   | 0.5230 |   0.4825  | 0.5708 |</span><br><span class="line">+------------+--------+-----------+--------+</span><br></pre></td></tr></table></figure>
+
+<p>去处<pad>和<suc>标签，Label F1 为0.705</suc></pad></p>
 
       
 
@@ -207,7 +215,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">record</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">problem</a>
         		</li>
       		
 		</ul>
@@ -263,7 +271,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://example.com/2023/03/06/%E6%9C%AC%E5%91%A8%E8%AE%A1%E5%88%92/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://example.com/2023/03/14/%E5%B0%86W2NER%E7%94%A8%E4%BA%8E%E4%BA%8B%E4%BB%B6%E7%B1%BB%E5%9E%8B%E8%AF%86%E5%88%AB/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -277,18 +285,9 @@
   
 <nav id="article-nav">
   
-    <a href="/2023/03/06/Fengshenbang-LM%E4%B8%AD%E7%9A%84%E5%AE%9E%E4%BD%93%E6%8A%BD%E5%8F%96%E6%A0%B7%E4%BE%8B%E6%97%A0%E6%B3%95%E8%BF%90%E8%A1%8C/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          Fengshenbang-LM中的实体抽取样例无法运行
-        
-      </div>
-    </a>
   
-  
-    <a href="/2023/03/05/hexo-readme/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">hexo_readme</div>
+    <a href="/2023/03/13/%E6%9C%AC%E5%91%A8%E8%AE%A1%E5%88%92-3-13-3-19/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">本周计划(3.13-3.19)</div>
       <i class="icon-circle-right"></i>
     </a>
   
